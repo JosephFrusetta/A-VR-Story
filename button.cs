@@ -32,7 +32,7 @@ public class button : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
-            Debug.LogError("No AudioSource component attached to the GameObject. Please add one.");
+            Debug.LogError("No AudioSource attached to the GameObject");
         }
     }
 
@@ -47,7 +47,7 @@ public class button : MonoBehaviour
         if (storyPlaying == false)
         {
             storyPlaying = true;
-            fadeInScript.StartFadeIn(); //Turns off black UI element so the initial scene is visbile.
+            fadeInScript.StartFadeIn(); // Fades the black UI element so the initial scene becomes visible
             StartCoroutine(ChangeSkybox());
         }
 
@@ -60,9 +60,10 @@ public class button : MonoBehaviour
             audioSource.clip = StoryAudio;
             audioSource.Play();
         }
+
         yield return new WaitForSeconds(waitBeforeScene1);
         RenderSettings.skybox = Scene1; // Set the skybox to Scene1
-        DynamicGI.UpdateEnvironment(); // Update the Global Illumination
+        DynamicGI.UpdateEnvironment(); // Update the Global Illumination - GameObject lighting will update with the new skybox
         yield return new WaitForSeconds(waitAfterScene1);
  
         RenderSettings.skybox = Scene2;
