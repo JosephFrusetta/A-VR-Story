@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Button0 : MonoBehaviour
+public class SceneChangeBB : MonoBehaviour
 {
     public float waitBeforeScene1 = 3.0f;
     public FadeIn fadeInScript;
-
     public AudioClip Scene0Audio;
     private AudioSource audioSource;
     
@@ -32,14 +31,14 @@ public class Button0 : MonoBehaviour
 
     public void ButtonActivate()
     {
-            fadeInScript.StartFadeIn(); // Fades the black UI element so the initial scene becomes visible
-            StartCoroutine(ChangeScene());
+        audioSource.Stop(); // Stops all audio from playing
+        fadeInScript.StartFadeIn(); // Fades the black UI element so the initial scene becomes visible
+        StartCoroutine(ChangeScene());
     }
 
     IEnumerator ChangeScene()
     {
         yield return new WaitForSeconds(waitBeforeScene1); // Wait before loading the next scene
         SceneManager.LoadScene("GameScene1"); // Auto load next scene
-        audioSource.Stop(); // Stops all audio from playing
     }
 }
