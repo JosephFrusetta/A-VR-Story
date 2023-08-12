@@ -5,18 +5,19 @@ from IPython.display import Audio
 import torchaudio
 torchaudio.set_audio_backend("soundfile")
 
-# download and load all models
+# Download and load all models
 preload_models()
 
-# generate audio from text
-text_prompt = """
-     Hello, my name is Suno. And, uh — and I like pizza. [laughs] 
-     But I also have other interests such as playing tic tac toe.
-"""
-audio_array = generate_audio(text_prompt, history_prompt="v2/en_speaker_2")
+# List of text prompts
+prompts = [
+    "Hello, my name is Smirch. And, uh — and I like pizza. [laughs]",
+    "Second string",
+    "aand here's the third one",
+]
 
-# save audio to disk
-write_wav("bark_generation.wav", SAMPLE_RATE, audio_array)
-  
-# play text in notebook
-Audio(audio_array, rate=SAMPLE_RATE)
+# Loop through each text prompt, generate audio, and save to a unique filename
+for idx, text_prompt in enumerate(prompts, 1):
+    audio_array = generate_audio(text_prompt, history_prompt="v2/en_speaker_2")
+    filename = f"bark{idx}.wav"
+    write_wav(filename, SAMPLE_RATE, audio_array)
+    print(f"Saved: {filename}")
