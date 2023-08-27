@@ -9,6 +9,7 @@ public class SceneChangeBB : MonoBehaviour
     public FadeIn fadeInScript;
     public AudioClip Scene0Audio;
     private AudioSource audioSource;
+    private bool buttonActive = false;
     
     // Start is called before the first frame update
     void Start()
@@ -33,7 +34,18 @@ public class SceneChangeBB : MonoBehaviour
     {
         audioSource.Stop(); // Stops all audio from playing
         fadeInScript.StartFadeIn(); // Fades the black UI element so the initial scene becomes visible
-        StartCoroutine(ChangeScene());
+        StartCoroutine(WaitToActivateButton());  
+
+        if (buttonActive == true)
+        {
+            StartCoroutine(ChangeScene());  
+        }
+    }
+
+    IEnumerator WaitToActivateButton()
+    {
+        yield return new WaitForSeconds(3); // Wait 3 seconds
+        buttonActive = true; // Allow button to be activated after x seconds. This prevents accidental scene selections.
     }
 
     IEnumerator ChangeScene()
