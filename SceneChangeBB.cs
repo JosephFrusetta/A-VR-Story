@@ -53,5 +53,4 @@ public class SceneChangeBB : MonoBehaviour
         audioSource.Stop(); // Stops all audio from playing
         SceneManager.LoadScene("GameScene1"); // Load next scene
     }
-    }
 }
