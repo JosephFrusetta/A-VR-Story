@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneChangeBB : MonoBehaviour
 {
-    public float waitBeforeNextScene = 3.0f;
+    public float waitBeforeNextScene = 2.0f;
     public FadeIn fadeInScript;
     public AudioClip Scene0Audio;
     private AudioSource audioSource;
-    private bool buttonActive = false;
+    private bool buttonActive;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +50,6 @@ public class SceneChangeBB : MonoBehaviour
     IEnumerator ChangeScene()
     {
         yield return new WaitForSeconds(waitBeforeNextScene); // Wait before loading the next scene
-        audioSource.Stop(); // Stops all audio from playing
         SceneManager.LoadScene("GameScene1"); // Load next scene
     }
 }
