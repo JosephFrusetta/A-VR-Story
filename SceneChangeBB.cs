@@ -7,7 +7,8 @@ public class SceneChangeBB : MonoBehaviour
 {
     public float waitBeforeNextScene = 2.0f;
     public FadeIn fadeInScript;
-    public AudioClip Scene0Audio;
+    public AudioClip scene0Audio;
+    public AudioClip transitionBlip;
     private AudioSource audioSource;
     private bool buttonActive;
 
@@ -17,7 +18,7 @@ public class SceneChangeBB : MonoBehaviour
         fadeInScript.StartFadeIn(); // Fades the black UI element so the initial scene becomes visible
         DynamicGI.UpdateEnvironment(); // Update the Global Illumination - GameObject lighting will update with the new skybox
         audioSource = GetComponent<AudioSource>();
-        audioSource.clip = Scene0Audio;
+        audioSource.clip = scene0Audio;
         audioSource.Play();
         StartCoroutine(WaitToActivateButton());
         
@@ -49,6 +50,7 @@ public class SceneChangeBB : MonoBehaviour
     
     IEnumerator ChangeScene()
     {
+        audioSource.PlayOneShot(transitionBlip);
         yield return new WaitForSeconds(waitBeforeNextScene); // Wait before loading the next scene
         SceneManager.LoadScene("GameScene1"); // Load next scene
     }
