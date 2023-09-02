@@ -15,23 +15,18 @@ public class SceneChangeBB : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (audioSource == null)
+        {
+            Debug.LogError("No AudioSource component attached to the GameObject.");
+            return;
+        }
+
         fadeInScript.StartFadeIn(); // Fades the black UI element so the initial scene becomes visible
         DynamicGI.UpdateEnvironment(); // Update the Global Illumination - GameObject lighting will update with the new skybox
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = scene0Audio;
         audioSource.Play();
         StartCoroutine(WaitToActivateButton());
-        
-        if (audioSource == null)
-        {
-            Debug.LogError("No AudioSource component attached to the GameObject.");
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void ButtonActivate()
