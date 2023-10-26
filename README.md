@@ -1,8 +1,5 @@
-# AIStoriesInVR
-AI Stories told in VR
+# AVRStory
 
 A universe sculpted by generative AI, narrated by AI, and refined with a human touch.
 
-Experience the first episode which follows Alira, an explorer looking for new planets.
-
-Download here: https://www.joefrusetta.com/vr-stories-ai/
+Read more about the VR experience or download it here: https://www.joefrusetta.com/a-vr-story/
